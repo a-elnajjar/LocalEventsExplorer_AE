@@ -16,12 +16,12 @@ final class URLSessionAPIClient: WebAPIClientService {
     private let session: URLSession
     private let timeout: TimeInterval
 
-    init(session: URLSession = .shared, timeout: TimeInterval = 15) {
+    init(session: URLSession = .shared, timeout: TimeInterval = AppConfig.requestTimeout) {
         self.session = session
         self.timeout = timeout
     }
 
-    private static let logger = Logger(subsystem: "LocalEventsExplorer", category: "APIClient")
+    private static let logger = Logger(subsystem: AppConfig.loggerSubsystem, category: "APIClient")
 
     func get(_ url: URL) async throws -> Data {
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: timeout)

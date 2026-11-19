@@ -19,4 +19,10 @@ enum AppConfig {
 
     /// Cache time-to-live in seconds.
     static let cacheTTL: TimeInterval = 15 * 60
+
+    /// How long a single network request waits before timing out.
+    static let requestTimeout: TimeInterval = 15
+
+    /// Subsystem for os.Logger instances across the app, so log output is grouped consistently.
+    static let loggerSubsystem = "LocalEventsExplorer_AE"
 }

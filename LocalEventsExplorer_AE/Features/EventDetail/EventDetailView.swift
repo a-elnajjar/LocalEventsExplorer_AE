@@ -51,6 +51,21 @@ struct EventDetailView: View {
 
                 Label(event.locationName, systemImage: "mappin.and.ellipse")
 
+                if let distance = viewModel.distanceText {
+                    Label("\(distance) away", systemImage: "location")
+                        .foregroundStyle(.tint)
+                }
+
+                Button {
+                    viewModel.openDirections()
+                } label: {
+                    Label("Directions", systemImage: "car.fill")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+                .padding(.top, 8)
+
                 if let error = viewModel.errorMessage {
                     Text(error)
                         .font(.footnote)

@@ -12,6 +12,7 @@ import SwiftUI
 struct LocalEventsExplorerApp: App {
     private let modelContainer: ModelContainer
     private let repository: EventRepository
+    private let locationService: LocationService
 
     init() {
         do {
@@ -23,12 +24,13 @@ struct LocalEventsExplorerApp: App {
             remote: DefaultEventRemoteDataSource(),
             local: SwiftDataEventLocalDataSource(context: modelContainer.mainContext)
         )
+        locationService = CoreLocationService()
     }
 
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                EventListView(viewModel: EventListViewModel(repository: repository))
+                EventListView(viewModel: EventListViewModel(repository: repository, locationService: locationService))
             }
         }
         .modelContainer(modelContainer)

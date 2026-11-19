@@ -43,6 +43,9 @@ struct EventListView: View {
         case .loaded:
             let events = viewModel.visibleEvents
             List {
+                if viewModel.locationDenied {
+                    LocationDeniedRow()
+                }
                 if let error = viewModel.refreshError {
                     Label(error, systemImage: "wifi.exclamationmark")
                         .font(.footnote)
@@ -50,7 +53,11 @@ struct EventListView: View {
                 }
                 ForEach(events) { event in
                     NavigationLink(value: event) {
-                        EventRow(event: event, isBookmarked: viewModel.bookmarkedIDs.contains(event.id))
+                        EventRow(
+                            event: event,
+                            isBookmarked: viewModel.bookmarkedIDs.contains(event.id),
+                            distanceText: viewModel.distanceText(for: event)
+                        )
                     }
                 }
             }
@@ -87,6 +94,7 @@ struct EventListView: View {
 struct EventRow: View {
     let event: Event
     var isBookmarked = false
+    var distanceText: String?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -106,8 +114,34 @@ struct EventRow: View {
             Text(event.startTime, format: .dateTime.weekday().month().day().hour().minute())
                 .font(.caption)
                 .foregroundStyle(.secondary)
+            if let distanceText {
+                Label("\(distanceText) away", systemImage: "location")
+                    .font(.caption)
+                    .foregroundStyle(.tint)
+            }
         }
         .padding(.vertical, 4)
+    }
+}
+
+/// Shown when location permission is denied; links to the app's page in Settings.
+struct LocationDeniedRow: View {
+    @Environment(\.openURL) private var openURL
+
+    var body: some View {
+        HStack {
+            Label("Turn on location to see distances", systemImage: "location.slash")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+            Spacer()
+            Button("Open Settings") {
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    openURL(url)
+                }
+            }
+            .font(.footnote)
+            .buttonStyle(.borderless)
+        }
     }
 }
 
