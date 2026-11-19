@@ -8,8 +8,6 @@
 import SwiftData
 import SwiftUI
 
-
-
 @main
 struct LocalEventsExplorerApp: App {
     private let repository: EventRepository = DefaultEventRepository()

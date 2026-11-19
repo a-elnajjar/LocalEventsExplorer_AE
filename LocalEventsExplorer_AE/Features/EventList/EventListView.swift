@@ -35,7 +35,11 @@ struct EventListView: View {
                         .foregroundStyle(.orange)
                 }
                 ForEach(events) { event in
-                    EventRow(event: event)
+                    NavigationLink {
+                        EventDetailView(viewModel: EventDetailViewModel(event: event))
+                    } label: {
+                        EventRow(event: event)
+                    }
                 }
             }
             .refreshable { await viewModel.refresh() }

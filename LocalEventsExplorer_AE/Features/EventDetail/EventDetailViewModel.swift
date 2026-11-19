@@ -3,8 +3,7 @@
 //  LocalEventsExplorer_AE
 //
 //  Created by Abdalla Elnajjar on 2026-11-19.
-//
-
+//  View model for event detail screen.
 
 import Foundation
 import Observation

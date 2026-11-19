@@ -28,8 +28,6 @@ final class EventListViewModel {
         self.repository = repository
     }
 
-
-
     func load() async {
         guard state != .loading else { return }
         if case .loaded = state {} else {

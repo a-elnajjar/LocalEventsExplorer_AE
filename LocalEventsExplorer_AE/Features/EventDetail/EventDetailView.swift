@@ -1,3 +1,10 @@
+//
+//  EventDetailView.swift
+//  LocalEventsExplorer_AE
+//
+//  Created by Abdalla Elnajjar on 2026-11-19.
+//  Event detail screen.
+
 import SwiftUI
 
 struct EventDetailView: View {
@@ -12,6 +19,27 @@ struct EventDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
+                if let imageURL = event.imageURL {
+                    AsyncImage(url: imageURL) { phase in
+                        if let image = phase.image {
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 240)
+                                .clipped()
+                        } else if phase.error != nil {
+                            imagePlaceholder
+                        } else {
+                            ProgressView()
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 240)
+                        }
+                    }
+                } else {
+                    imagePlaceholder
+                }
+
                 Text(event.title)
                     .font(.title.bold())
 
@@ -26,6 +54,15 @@ struct EventDetailView: View {
             .padding()
         }
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var imagePlaceholder: some View {
+        Image(systemName: "photo")
+            .font(.largeTitle)
+            .foregroundStyle(.secondary)
+            .frame(maxWidth: .infinity)
+            .frame(height: 240)
+            .background(.quaternary)
     }
 }
 
