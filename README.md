@@ -117,7 +117,7 @@ See [docs/architecture.md](docs/architecture.md) for the full architecture diagr
 
 ## Time spent
 
-The final version took about 4 hours of coding (see the commit history), plus time for the docs and demo video. In total I spent about **[X] hours**, including two earlier attempts that helped me settle the design.
+The final version took about 5.5 hours of coding (see the commit history), plus time 2 - 4  hours for the docs, integrated testing and demo video. In total I spent about 8 to 9 hours , including two earlier attempts that helped me settle the design.
 
 ## Use of AI
 
