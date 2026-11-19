@@ -1,0 +1,36 @@
+#
+#  .swiftlint.yml
+#  LocalEventsExplorer
+#
+#  Created by Abdalla Elnajjar on 2026-11-19.
+#
+
+
+included:
+  - LocalEventsExplorer
+  - LocalEventsExplorerTests
+
+excluded:
+  - LocalEventsExplorerUITests
+  - DerivedData
+
+disabled_rules:
+  - todo
+
+opt_in_rules:
+  - empty_count
+  - first_where
+  - sorted_imports
+  - force_unwrapping
+  - closure_spacing
+  - redundant_nil_coalescing
+
+line_length:
+  warning: 120
+  error: 160
+
+identifier_name:
+  excluded: [id, url, lat, lng]
+
+type_body_length:
+  warning: 250
