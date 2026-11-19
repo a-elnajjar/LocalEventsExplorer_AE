@@ -3,7 +3,7 @@
 //  LocalEventsExplorer_AE
 //
 //  Created by Abdalla Elnajjar on 2026-11-19.
-//  Event model
+//  Event model.
 
 import Foundation
 

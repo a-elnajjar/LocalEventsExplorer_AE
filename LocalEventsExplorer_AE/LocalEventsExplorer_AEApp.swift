@@ -3,16 +3,16 @@
 //  LocalEventsExplorer_AE
 //
 //  Created by Abdalla Elnajjar on 2026-11-19.
-//
+//  App entry point.
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 @main
 struct LocalEventsExplorer_AEApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Item.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

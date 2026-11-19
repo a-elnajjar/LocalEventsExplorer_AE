@@ -3,7 +3,7 @@
 //  LocalEventsExplorer_AETests
 //
 //  Created by Abdalla Elnajjar on 2026-11-19.
-// testing Event Decoder
+//  Tests for EventDecoder.
 
 import Foundation
 @testable import LocalEventsExplorer_AE

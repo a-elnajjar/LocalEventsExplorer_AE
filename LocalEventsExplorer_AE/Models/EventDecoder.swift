@@ -3,7 +3,7 @@
 //  LocalEventsExplorer_AE
 //
 //  Created by Abdalla Elnajjar on 2026-11-19.
-//   Decodes event data
+//  Decodes event JSON into Event values.
 
 import Foundation
 
