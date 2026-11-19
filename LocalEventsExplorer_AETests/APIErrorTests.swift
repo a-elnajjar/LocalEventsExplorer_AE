@@ -10,6 +10,7 @@ import Foundation
 import Testing
 
 @Suite("APIError")
+@MainActor
 struct APIErrorTests {
     @Test("Connectivity URLErrors map to .offline", arguments: [
         URLError.Code.notConnectedToInternet, .networkConnectionLost, .dataNotAllowed

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AppConfig {
+nonisolated enum AppConfig {
     /// Mock REST endpoint: a static JSON file self-hosted in this repo (MockAPI/events.json) and served via GitHub raw.
     static let eventsURL: URL = {
         let raw = "https://raw.githubusercontent.com/a-elnajjar/LocalEventsExplorer_AE/main/MockAPI/events.json"

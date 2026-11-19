@@ -10,6 +10,7 @@ import Foundation
 import Testing
 
 @Suite("Event JSON decoding")
+@MainActor
 struct EventDecoderTests {
     @Test("Decodes a valid events payload, sorted by start time")
     func decodesValidPayload() throws {

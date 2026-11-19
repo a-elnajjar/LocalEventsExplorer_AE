@@ -17,6 +17,7 @@ private struct StubWebAPIClient: WebAPIClientService {
 }
 
 @Suite("EventRemoteDataSource")
+@MainActor
 struct EventRemoteDataSourceTests {
     private let sampleJSON = Data("""
     {"events":[{"id":"1","title":"T","locationName":"L","latitude":1,"longitude":1,

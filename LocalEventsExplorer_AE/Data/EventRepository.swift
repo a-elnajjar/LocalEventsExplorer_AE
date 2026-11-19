@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-protocol EventRepository {
+protocol EventRepository: Sendable {
     /// Returns events, using the cache if it's still fresh.
     func events(forceRefresh: Bool) async throws -> [Event]
     /// Returns whatever is currently cached, without touching the network.
@@ -28,12 +28,14 @@ final class DefaultEventRepository: EventRepository {
     private let now: () -> Date
 
     init(
-        remote: EventRemoteDataSource = DefaultEventRemoteDataSource(),
+        remote: EventRemoteDataSource? = nil,
         local: EventLocalDataSource,
         ttl: TimeInterval = AppConfig.cacheTTL,
         now: @escaping () -> Date = Date.init
     ) {
-        self.remote = remote
+        // Built here, not as a default argument: default arguments are evaluated
+        // in a nonisolated context and the data source is main-actor isolated.
+        self.remote = remote ?? DefaultEventRemoteDataSource()
         self.local = local
         self.ttl = ttl
         self.now = now
