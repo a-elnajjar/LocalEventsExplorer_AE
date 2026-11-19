@@ -25,4 +25,16 @@ enum AppConfig {
 
     /// Subsystem for os.Logger instances across the app, so log output is grouped consistently.
     static let loggerSubsystem = "LocalEventsExplorer_AE"
+
+    /// Background refresh task ID.
+    static let backgroundRefreshTaskIdentifier = "ae.LocalEventsExplorer-AE.refresh"
+
+    /// Background refresh interval.
+    static let backgroundRefreshInterval: TimeInterval = 60 * 60
+
+    /// Max number of images in memory.
+    static let imageMemoryCacheCountLimit = 100
+
+    /// On-disk cache for downloaded image data.
+    static let imageDiskCacheCapacityBytes = 100 * 1_024 * 1_024
 }

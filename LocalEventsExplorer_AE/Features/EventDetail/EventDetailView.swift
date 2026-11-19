@@ -19,26 +19,10 @@ struct EventDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
-                if let imageURL = event.imageURL {
-                    AsyncImage(url: imageURL) { phase in
-                        if let image = phase.image {
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 240)
-                                .clipped()
-                        } else if phase.error != nil {
-                            imagePlaceholder
-                        } else {
-                            ProgressView()
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 240)
-                        }
-                    }
-                } else {
-                    imagePlaceholder
-                }
+                CachedAsyncImage(url: event.imageURL)
+                    .frame(height: 240)
+                    .frame(maxWidth: .infinity)
+                    .clipped()
 
                 Text(event.title)
                     .font(.title.bold())
@@ -85,15 +69,6 @@ struct EventDetailView: View {
                 .accessibilityLabel(viewModel.isBookmarked ? "Remove bookmark" : "Bookmark")
             }
         }
-    }
-
-    private var imagePlaceholder: some View {
-        Image(systemName: "photo")
-            .font(.largeTitle)
-            .foregroundStyle(.secondary)
-            .frame(maxWidth: .infinity)
-            .frame(height: 240)
-            .background(.quaternary)
     }
 }
 

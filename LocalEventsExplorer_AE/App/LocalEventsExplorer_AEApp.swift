@@ -14,6 +14,8 @@ struct LocalEventsExplorerApp: App {
     private let repository: EventRepository
     private let locationService: LocationService
 
+    @Environment(\.scenePhase) private var scenePhase
+
     init() {
         do {
             modelContainer = try .app()
@@ -34,5 +36,13 @@ struct LocalEventsExplorerApp: App {
             }
         }
         .modelContainer(modelContainer)
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .background {
+                BackgroundRefresh.schedule()
+            }
+        }
+        .backgroundTask(.appRefresh(AppConfig.backgroundRefreshTaskIdentifier)) { [repository] in
+            await BackgroundRefresh.run(repository: repository)
+        }
     }
 }
