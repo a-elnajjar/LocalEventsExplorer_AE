@@ -50,10 +50,26 @@ struct EventDetailView: View {
                 }
 
                 Label(event.locationName, systemImage: "mappin.and.ellipse")
+
+                if let error = viewModel.errorMessage {
+                    Text(error)
+                        .font(.footnote)
+                        .foregroundStyle(.red)
+                }
             }
             .padding()
         }
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    viewModel.toggleBookmark()
+                } label: {
+                    Image(systemName: viewModel.isBookmarked ? "bookmark.fill" : "bookmark")
+                }
+                .accessibilityLabel(viewModel.isBookmarked ? "Remove bookmark" : "Bookmark")
+            }
+        }
     }
 
     private var imagePlaceholder: some View {
@@ -74,7 +90,8 @@ struct EventDetailView: View {
                     id: "1", title: "Sample Event", locationName: "Toronto",
                     latitude: 43.65, longitude: -79.38,
                     startTime: .now, imageURL: nil
-                )
+                ),
+                repository: DefaultEventRepository(local: SwiftDataEventLocalDataSource.preview)
             )
         )
     }

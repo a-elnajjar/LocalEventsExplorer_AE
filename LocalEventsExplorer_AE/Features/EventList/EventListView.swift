@@ -3,7 +3,7 @@
 //  LocalEventsExplorer_AE
 //
 //  Created by Abdalla Elnajjar on 2026-11-19.
-//  Event list screen with pull-to-refresh and error states.
+//  Events list: spinner, list with pull-to-refresh, error screen, offline banner, bookmark filter.
 
 import SwiftUI
 
@@ -17,7 +17,20 @@ struct EventListView: View {
     var body: some View {
         content
             .navigationTitle("Events")
+            .navigationDestination(for: Event.self) { event in
+                EventDetailView(viewModel: viewModel.makeDetailViewModel(for: event))
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Toggle(isOn: $viewModel.showBookmarkedOnly) {
+                        Image(systemName: viewModel.showBookmarkedOnly ? "bookmark.fill" : "bookmark")
+                    }
+                    .toggleStyle(.button)
+                    .accessibilityLabel("Show bookmarked only")
+                }
+            }
             .task { await viewModel.load() }
+            .onAppear { viewModel.reloadBookmarks() }
     }
 
     @ViewBuilder
@@ -27,7 +40,8 @@ struct EventListView: View {
             ProgressView("Loading events…")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-        case .loaded(let events):
+        case .loaded:
+            let events = viewModel.visibleEvents
             List {
                 if let error = viewModel.refreshError {
                     Label(error, systemImage: "wifi.exclamationmark")
@@ -35,17 +49,23 @@ struct EventListView: View {
                         .foregroundStyle(.orange)
                 }
                 ForEach(events) { event in
-                    NavigationLink {
-                        EventDetailView(viewModel: EventDetailViewModel(event: event))
-                    } label: {
-                        EventRow(event: event)
+                    NavigationLink(value: event) {
+                        EventRow(event: event, isBookmarked: viewModel.bookmarkedIDs.contains(event.id))
                     }
                 }
             }
             .refreshable { await viewModel.refresh() }
             .overlay {
                 if events.isEmpty {
-                    ContentUnavailableView("No events nearby", systemImage: "calendar")
+                    if viewModel.showBookmarkedOnly {
+                        ContentUnavailableView(
+                            "No bookmarks yet",
+                            systemImage: "bookmark",
+                            description: Text("Open an event and tap the bookmark icon to save it.")
+                        )
+                    } else {
+                        ContentUnavailableView("No events nearby", systemImage: "calendar")
+                    }
                 }
             }
 
@@ -66,11 +86,20 @@ struct EventListView: View {
 
 struct EventRow: View {
     let event: Event
+    var isBookmarked = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(event.title)
-                .font(.headline)
+            HStack(alignment: .firstTextBaseline) {
+                Text(event.title)
+                    .font(.headline)
+                if isBookmarked {
+                    Image(systemName: "bookmark.fill")
+                        .font(.caption)
+                        .foregroundStyle(.tint)
+                        .accessibilityLabel("Bookmarked")
+                }
+            }
             Text(event.locationName)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
@@ -84,6 +113,7 @@ struct EventRow: View {
 
 #Preview {
     NavigationStack {
-        EventListView(viewModel: EventListViewModel(repository: DefaultEventRepository()))
+        let repository = DefaultEventRepository(local: SwiftDataEventLocalDataSource.preview)
+        EventListView(viewModel: EventListViewModel(repository: repository))
     }
 }
