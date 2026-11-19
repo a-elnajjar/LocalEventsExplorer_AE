@@ -1,0 +1,94 @@
+{
+  "events": [
+    {
+      "id": "toronto-winter-market-2026",
+      "title": "Distillery Winter Village",
+      "locationName": "55 Mill St, Toronto",
+      "latitude": 43.6503,
+      "longitude": -79.3596,
+      "startTime": "2026-11-27T17:00:00-05:00",
+      "imageURL": "https://images.unsplash.com/photo-1517457373958-b7bdd4587205"
+    },
+    {
+      "id": "harbourfront-lights-2026",
+      "title": "Harbourfront Winter Lights",
+      "locationName": "235 Queens Quay W, Toronto",
+      "latitude": 43.6387,
+      "longitude": -79.3817,
+      "startTime": "2026-11-28T18:30:00-05:00",
+      "imageURL": "https://images.unsplash.com/photo-1519608487953-e999c86e7455"
+    },
+    {
+      "id": "st-lawrence-food-festival-2026",
+      "title": "St. Lawrence Food Hall",
+      "locationName": "93 Front St E, Toronto",
+      "latitude": 43.6487,
+      "longitude": -79.3716,
+      "startTime": "2026-11-29T12:00:00-05:00",
+      "imageURL": "https://images.unsplash.com/photo-1504674900247-0877df9cc836"
+    },
+    {
+      "id": "rom-after-dark-2026",
+      "title": "ROM After Dark",
+      "locationName": "100 Queens Park, Toronto",
+      "latitude": 43.6677,
+      "longitude": -79.3948,
+      "startTime": "2026-12-01T19:00:00-05:00",
+      "imageURL": "https://images.unsplash.com/photo-1561214115-f2f134cc4912"
+    },
+    {
+      "id": "queen-west-art-walk-2026",
+      "title": "Queen West Art Walk",
+      "locationName": "Queen St W, Toronto",
+      "latitude": 43.6489,
+      "longitude": -79.3972,
+      "startTime": "2026-12-02T14:00:00-05:00",
+      "imageURL": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5"
+    },
+    {
+      "id": "toronto-jazz-night-2026",
+      "title": "Downtown Jazz Night",
+      "locationName": "Yonge-Dundas Square, Toronto",
+      "latitude": 43.6561,
+      "longitude": -79.3802,
+      "startTime": "2026-12-03T20:00:00-05:00",
+      "imageURL": "https://images.unsplash.com/photo-1511192336575-5a79af67a629"
+    },
+    {
+      "id": "evergreen-winter-market-2026",
+      "title": "Evergreen Winter Market",
+      "locationName": "550 Bayview Ave, Toronto",
+      "latitude": 43.6841,
+      "longitude": -79.3656,
+      "startTime": "2026-12-04T16:00:00-05:00",
+      "imageURL": "https://images.unsplash.com/photo-1482575832494-771f74bf6857"
+    },
+    {
+      "id": "toronto-symphony-2026",
+      "title": "Holiday Pops at Roy Thomson Hall",
+      "locationName": "60 Simcoe St, Toronto",
+      "latitude": 43.6466,
+      "longitude": -79.3868,
+      "startTime": "2026-12-05T19:30:00-05:00",
+      "imageURL": "https://images.unsplash.com/photo-1506157786151-b8491531f063"
+    },
+    {
+      "id": "kingsway-holiday-market-2026",
+      "title": "Kingsway Holiday Market",
+      "locationName": "The Kingsway, Toronto",
+      "latitude": 43.6478,
+      "longitude": -79.5106,
+      "startTime": "2026-12-06T11:00:00-05:00",
+      "imageURL": "https://images.unsplash.com/photo-1512389142860-9c449e58a543"
+    },
+    {
+      "id": "toronto-waterfront-run-2026",
+      "title": "Waterfront Winter Run",
+      "locationName": "Ontario Place, Toronto",
+      "latitude": 43.6275,
+      "longitude": -79.4144,
+      "startTime": "2026-12-07T09:00:00-05:00",
+      "imageURL": "https://images.unsplash.com/photo-1552674605-db6ffd4facb5"
+    }
+  ]
+}

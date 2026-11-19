@@ -11,7 +11,7 @@ Built for the Mobile Developer technical assessment (Assignment 1: Local Events 
 
 | Requirement | How it's done |
 |---|---|
-| Mock REST API | Static JSON file on GitHub (`AppConfig.eventsURL`) |
+| Mock REST API | Static JSON file self-hosted in this repo at [MockAPI/events.json](MockAPI/events.json), served via GitHub raw (`AppConfig.eventsURL`) |
 | Local DB | SwiftData stores the last-fetched events and bookmarks |
 | API cache with TTL | Events are served from SwiftData for 15 minutes, then refetched. Pull to refresh skips the cache. |
 | Image caching | Decoded images in memory (`NSCache`, 100 images) and downloaded data on disk (`URLCache`, 100 MB) |
@@ -102,7 +102,7 @@ See [docs/architecture.md](docs/architecture.md) for the full architecture diagr
 - **Low-frequency background refresh:** at most about once an hour, to save battery. iOS decides the exact timing, so it can't be relied on for fresh data.
 - **Offline fallback in the view model:** keeps the repository simple, but background refresh doesn't use the fallback (it just logs the error).
 - **Bookmark read errors are ignored:** if loading bookmarks fails, the list shows none instead of blocking the screen. A local read failing is rare. In production I'd log it.
-- **Static JSON on GitHub as the mock API:** free and reliable, but GitHub caches raw files for a few minutes, so changes to the JSON don't show up right away.
+- **Static JSON in this repo as the mock API:** free, reliable, and versioned with the app (`MockAPI/events.json`), but GitHub caches raw files for a few minutes, so changes to the JSON don't show up right away.
 - **iOS 26.2 minimum:** lets me use the latest SwiftUI and SwiftData APIs, but limits which devices can run it.
 
 ## What I'd do next
