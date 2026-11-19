@@ -5,7 +5,6 @@
 //  Created by Abdalla Elnajjar on 2026-11-19.
 //  App entry point.
 
-import SwiftData
 import SwiftUI
 
 @main

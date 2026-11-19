@@ -3,7 +3,7 @@
 //  LocalEventsExplorer_AE
 //
 //  Created by Abdalla Elnajjar on 2026-11-19.
-//  Single source of truth for events: offline-first over SwiftData, synced from the remote API with a TTL.
+//  Single source of truth for events (v1: passes through to the remote API).
 
 import Foundation
 

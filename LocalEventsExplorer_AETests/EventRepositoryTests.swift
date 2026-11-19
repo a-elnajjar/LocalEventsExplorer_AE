@@ -1,6 +1,6 @@
 //
 //  EventRepositoryTests.swift
-//  LocalEventsExplorer_AE
+//  LocalEventsExplorer_AETests
 //
 //  Created by Abdalla Elnajjar on 2026-11-19.
 //  Tests for DefaultEventRepository (v1: plain remote passthrough, no cache).

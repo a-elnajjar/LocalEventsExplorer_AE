@@ -13,7 +13,7 @@ import Testing
 struct EventDecoderTests {
     @Test("Decodes a valid events payload, sorted by start time")
     func decodesValidPayload() throws {
-        let json = """
+        let json = Data("""
         {
           "events": [
             {
@@ -36,7 +36,7 @@ struct EventDecoderTests {
             }
           ]
         }
-        """.data(using: .utf8)!
+        """.utf8)
 
         let events = try EventDecoder.decode(json)
 
@@ -48,7 +48,7 @@ struct EventDecoderTests {
 
     @Test("Throws on malformed JSON")
     func throwsOnInvalidPayload() {
-        let bad = "{ not valid json".data(using: .utf8)!
+        let bad = Data("{ not valid json".utf8)
         #expect(throws: (any Error).self) {
             try EventDecoder.decode(bad)
         }
