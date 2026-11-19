@@ -1,17 +1,17 @@
 #
 #  .swiftlint.yml
-#  LocalEventsExplorer
+#  LocalEventsExplorer_AE
 #
 #  Created by Abdalla Elnajjar on 2026-11-19.
 #
 
 
 included:
-  - LocalEventsExplorer
-  - LocalEventsExplorerTests
+  - LocalEventsExplorer_AE
+  - LocalEventsExplorer_AETests
 
 excluded:
-  - LocalEventsExplorerUITests
+  - LocalEventsExplorer_AEUITests
   - DerivedData
 
 disabled_rules:
@@ -34,3 +34,7 @@ identifier_name:
 
 type_body_length:
   warning: 250
+
+# Xcode's generated names keep the project's "_AE" suffix.
+type_name:
+  excluded: [LocalEventsExplorer_AEApp, LocalEventsExplorer_AETests]
